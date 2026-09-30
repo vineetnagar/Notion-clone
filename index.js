@@ -10,8 +10,8 @@ const { Document } = require("./modules/document");
 const methodOverride = require("method-override");
 
 const app = express();
-const server = http.createServer(app); // ✅ app pehle, fir server
-const io = new Server(server); // ✅ server ke baad io
+const server = http.createServer(app);
+const io = new Server(server);
 const PORT = 9000;
 
 app.use(express.json());
@@ -25,7 +25,6 @@ app.set("view engine", "ejs");
 connectToMongodb("mongodb://localhost:27017/Notion-clone").then(() =>
   console.log("Mongodb connected"),
 );
-
 
 io.on("connection", (socket) => {
   socket.on("title-update", ({ docId, title }) => {
