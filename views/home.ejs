@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notion Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; }
+
+      /* HERO */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 24px 60px;
+        text-align: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 14px;
+        background: #f5f5f5;
+        border: 1px solid #e8e8e8;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 24px;
+        font-weight: 500;
+      }
+
+      .hero-title {
+        font-size: 52px;
+        font-weight: 800;
+        color: #1a1a1a;
+        line-height: 1.15;
+        letter-spacing: -1.5px;
+        margin-bottom: 20px;
+        max-width: 700px;
+      }
+
+      .hero-sub {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 36px;
+        max-width: 480px;
+        line-height: 1.6;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-bottom: 60px;
+      }
+
+      .btn-hero-primary {
+        padding: 12px 28px;
+        background: #1a1a1a;
+        color: white;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .btn-hero-primary:hover { background: #333; color: white; }
+
+      .btn-hero-secondary {
+        padding: 12px 28px;
+        background: white;
+        color: #1a1a1a;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid #e0e0e0;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-hero-secondary:hover { background: #f5f5f5; color: #1a1a1a; }
+
+      /* FEATURES */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        max-width: 780px;
+        width: 100%;
+      }
+
+      .feature-card {
+        background: #f9f9f8;
+        border: 1px solid #e8e8e8;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: left;
+      }
+
+      .feature-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: white;
+        border: 1px solid #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+
+      .feature-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+      .feature-desc  { font-size: 12px; color: #888; line-height: 1.5; }
+
+      /* FOOTER */
+      .footer {
+        text-align: center;
+        padding: 32px;
+        font-size: 12px;
+        color: #bbb;
+        border-top: 1px solid #f0f0f0;
+        margin-top: 60px;
+      }
+
+      /* ════════════════════════════════
+         MEDIA QUERIES
+         ════════════════════════════════ */
+
+      /* 200–300px */
+      @media (max-width: 300px) {
+        .hero {
+          padding: 28px 10px 24px;
+        }
+        .hero-badge {
+          font-size: 9px;
+          padding: 3px 8px;
+          gap: 4px;
+          margin-bottom: 12px;
+        }
+        .hero-title {
+          font-size: 17px;
+          letter-spacing: -0.3px;
+          margin-bottom: 10px;
+          /* allow wrapping without overflow */
+          word-break: break-word;
+        }
+        .hero-sub {
+          font-size: 10px;
+          margin-bottom: 16px;
+          line-height: 1.5;
+        }
+        .hero-btns {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 7px;
+          margin-bottom: 24px;
+          width: 100%;
+        }
+        .btn-hero-primary,
+        .btn-hero-secondary {
+          padding: 8px 10px;
+          font-size: 10px;
+          border-radius: 6px;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+        }
+        .features {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .feature-card {
+          padding: 10px;
+          border-radius: 8px;
+        }
+        .feature-icon {
+          width: 26px;
+          height: 26px;
+          font-size: 12px;
+          margin-bottom: 6px;
+        }
+        .feature-title { font-size: 10px; }
+        .feature-desc  { font-size: 9px; }
+        .footer {
+          padding: 16px 10px;
+          font-size: 9px;
+          margin-top: 24px;
+        }
+      }
+
+      /* 301–480px */
+      @media (min-width: 301px) and (max-width: 480px) {
+        .hero { padding: 40px 16px 32px; }
+        .hero-title { font-size: 26px; letter-spacing: -0.5px; }
+        .hero-sub   { font-size: 13px; margin-bottom: 20px; }
+        .hero-btns  {
+          flex-direction: column;
+          align-items: center;
+          gap: 9px;
+          margin-bottom: 36px;
+        }
+        .btn-hero-primary,
+        .btn-hero-secondary {
+          width: 100%;
+          max-width: 260px;
+          justify-content: center;
+          font-size: 12px;
+          padding: 10px 16px;
+        }
+        .features { grid-template-columns: 1fr; gap: 10px; }
+        .feature-card { padding: 14px; }
+        .footer { padding: 20px 16px; font-size: 10px; margin-top: 36px; }
+      }
+
+      /* 481–640px */
+      @media (min-width: 481px) and (max-width: 640px) {
+        .hero-title { font-size: 32px; }
+        .hero-sub   { font-size: 15px; }
+        .hero-btns  { flex-direction: column; align-items: center; }
+        .features   { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <%- include("./partials/nav") %>
+
+    <section class="hero">
+      <div class="hero-badge">
+        <i class="bi bi-stars"></i>
+        Your all-in-one workspace
+      </div>
+
+      <h1 class="hero-title">
+        Your wiki, docs &amp; projects<br/>— all in one place
+      </h1>
+
+      <p class="hero-sub">
+        Write, plan, collaborate and get organised. Notion Clone gives your team a single space to work.
+      </p>
+
+      <div class="hero-btns">
+        <% if (locals.user) { %>
+          <a href="/dashboard" class="btn-hero-primary">Go to Dashboard →</a>
+        <% } else { %>
+          <a href="/user/signup" class="btn-hero-primary">Get started free →</a>
+          <a href="/user/signin" class="btn-hero-secondary">
+            <i class="bi bi-play-circle"></i> Login
+          </a>
+        <% } %>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <div class="feature-title">Docs & Notes</div>
+          <div class="feature-desc">Write anything — from quick notes to full documentation.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <div class="feature-title">Collaborate</div>
+          <div class="feature-desc">Invite your team and work together in real time.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title">AI Tools</div>
+          <div class="feature-desc">Summarize pages and generate content with AI.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 2025 Notion Clone. Built with Node.js, Express & MongoDB.</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

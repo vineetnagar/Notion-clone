@@ -1,0 +1,185 @@
+<style>
+  .navbar {
+    height: 56px;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    background: white;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .nav-links { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+  .btn-login {
+    padding: 7px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #555;
+    background: white;
+    text-decoration: none;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+
+  .btn-login:hover { background: #f5f5f5; color: #1a1a1a; }
+
+  .btn-getstarted {
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: white;
+    background: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid #1a1a1a;
+    transition: all 0.15s;
+  }
+
+  .btn-getstarted:hover { background: #333; color: white; }
+
+  .user-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1a1a1a;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .user-avatar-sm {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  /* ── NAVBAR: 200–300px ── */
+  @media (max-width: 300px) {
+    .navbar {
+      height: auto;
+      min-height: 48px;
+      padding: 8px 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .logo {
+      font-size: 13px;
+      gap: 6px;
+    }
+
+    .logo-icon {
+      width: 22px;
+      height: 22px;
+      font-size: 11px;
+      border-radius: 4px;
+    }
+
+    /* hide logo text, show only icon to save space */
+    .logo-text { display: none; }
+
+    .nav-links {
+      margin-left: auto;
+      gap: 5px;
+    }
+
+    .btn-login {
+      padding: 4px 8px;
+      font-size: 10px;
+      border-radius: 4px;
+    }
+
+    .btn-getstarted {
+      padding: 4px 8px;
+      font-size: 10px;
+      border-radius: 4px;
+    }
+
+    .user-dropdown-btn {
+      padding: 4px 7px;
+      font-size: 10px;
+      gap: 5px;
+    }
+
+    .user-avatar-sm {
+      width: 18px;
+      height: 18px;
+      font-size: 8px;
+    }
+  }
+
+  /* ── NAVBAR: 301–480px ── */
+  @media (min-width: 301px) and (max-width: 480px) {
+    .navbar { padding: 0 14px; }
+
+    .logo { font-size: 14px; }
+
+    .btn-login    { padding: 5px 10px; font-size: 11px; }
+    .btn-getstarted { padding: 5px 10px; font-size: 11px; }
+
+    .user-dropdown-btn { padding: 4px 9px; font-size: 11px; }
+  }
+</style>
+
+<nav class="navbar">
+  <a href="/" class="logo">
+    <div class="logo-icon">N</div>
+    <span class="logo-text">Notion Clone</span>
+  </a>
+
+  <div class="nav-links">
+    <% if (locals.user) { %>
+      <div class="dropdown">
+        <button class="user-dropdown-btn dropdown-toggle" data-bs-toggle="dropdown">
+          <div class="user-avatar-sm"><%= user.userName.charAt(0).toUpperCase() %></div>
+          <span class="logo-text"><%= user.userName %></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
+          <li><hr class="dropdown-divider"/></li>
+          <li><a class="dropdown-item text-danger" href="/user/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </div>
+    <% } else { %>
+      <a href="/user/signin" class="btn-login">Login</a>
+      <a href="/user/signup" class="btn-getstarted">Get started</a>
+    <% } %>
+  </div>
+</nav>

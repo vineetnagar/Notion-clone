@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .topbar {
+        height: 48px;
+        min-height: 48px;
+        background: white;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        gap: 10px;
+        overflow: hidden;
+        flex-wrap: nowrap;
+      }
+
+      .ham-btn {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 5px 8px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #555;
+        background: white;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .ham-btn:hover {
+        background: #f5f5f5;
+      }
+
+      @media (max-width: 768px) {
+        .ham-btn {
+          display: flex;
+        }
+      }
+
+      .breadcrumb-text {
+        font-size: 12px;
+        color: #aaa;
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .breadcrumb-text span {
+        color: #1a1a1a;
+        font-weight: 500;
+      }
+
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .saved-indicator {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: #888;
+        flex-shrink: 0;
+      }
+
+      .saved-dot {
+        width: 7px;
+        height: 7px;
+        background: #22c55e;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .online-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: white;
+        flex-shrink: 0;
+      }
+
+      .top-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 11px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #555;
+        background: white;
+        cursor: pointer;
+        transition: all 0.15s;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .top-btn:hover {
+        background: #f5f5f5;
+        color: #1a1a1a;
+      }
+
+      .top-btn-dark {
+        background: #1a1a1a;
+        color: white;
+        border-color: #1a1a1a;
+        font-weight: 500;
+      }
+
+      .top-btn-dark:hover {
+        background: #333;
+        color: white;
+      }
+
+      /* ── 200–300px ── */
+      @media (max-width: 300px) {
+        .topbar {
+          height: 36px;
+          min-height: 36px;
+          padding: 0 6px;
+          gap: 5px;
+        }
+
+        .ham-btn {
+          display: flex;
+          padding: 3px 6px;
+          border-radius: 4px;
+        }
+
+        .ham-btn i {
+          font-size: 15px !important;
+        }
+
+        .breadcrumb-text {
+          font-size: 10px;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .topbar-actions {
+          gap: 5px;
+        }
+
+        /* Saved indicator: sirf dot dikhao, text hide */
+        .saved-indicator {
+          gap: 0;
+        }
+
+        .saved-text {
+          display: none;
+        }
+
+        .saved-dot {
+          width: 6px;
+          height: 6px;
+        }
+
+        .online-avatar {
+          width: 22px;
+          height: 22px;
+          font-size: 9px;
+        }
+
+        /* Star aur Chat hide */
+        .btn-icon {
+          display: none;
+        }
+
+        .top-btn-dark {
+          padding: 3px 8px;
+          font-size: 10px;
+          border-radius: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <!-- Hamburger — always present, CSS handles visibility -->
+      <button
+        class="ham-btn"
+        onclick="document.getElementById('sidebar').classList.toggle('open')"
+        aria-label="Toggle sidebar"
+      >
+        <i class="bi bi-list" style="font-size: 18px"></i>
+      </button>
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb-text">
+        📋 My Workspace &nbsp;›&nbsp;
+        <span><%= locals.pageTitle || 'Dashboard' %></span>
+      </div>
+
+      <!-- Actions -->
+      <div class="topbar-actions">
+        <div class="saved-indicator">
+          <div class="saved-dot"></div>
+          <span class="saved-text">Saved</span>
+        </div>
+
+        <div class="online-avatar">
+          <%= locals.user ? user.userName.charAt(0).toUpperCase() : 'U' %>
+        </div>
+
+        <!-- btn-icon class lagao — 300px par hide honge -->
+        <button class="top-btn btn-icon"><i class="bi bi-star"></i></button>
+        <button class="top-btn btn-icon"><i class="bi bi-chat"></i></button>
+
+        <button
+          class="top-btn top-btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#shareModal"
+        >
+          Share
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
